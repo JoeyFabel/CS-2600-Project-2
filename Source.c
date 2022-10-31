@@ -26,8 +26,6 @@ void freePolynomial(Polynomial poly);
 
 int main()
 {
-	// errors if first character is negative
-
 	printf("Polynomials should be entered in the format 4x^0 + x^1 - 2x^2 ...\n\n");
 	printf("Please enter the first polynomial: ");
 	Polynomial poly1 = inputPolynomialFromUser();
@@ -390,7 +388,7 @@ Polynomial inputPolynomialFromUser()
 			for (lastDigitIndex = firstDigitIndex; lastDigitIndex > 0; lastDigitIndex--) // Look in reverse order from the first digit of the coefficient
 			{
 				if (*(userInput + lastDigitIndex) == '+') break; // The entered number was positive
-				else if (*(userInput + lastDigitIndex) == '-') 
+				else if (*(userInput + lastDigitIndex) == '-')
 				{
 					*(poly.coefficients + currentTerm) *= -1; // The entered number was negative
 					break;
@@ -446,7 +444,7 @@ void printPolynomial(Polynomial poly)
 	for (int i = 0; i < poly.terms; i++)
 	{
 		// Display the polynomial with a space between the sign and the number
-		if (i > 0) printf("%c ", *(poly.coefficients + i) >= 0 ? '+' : '-');
+		if (i > 0 || *(poly.coefficients) < 0) printf("%c ", *(poly.coefficients + i) >= 0 ? '+' : '-');
 		printf("%.2fx^%d ",  *(poly.coefficients + i) > 0 ? *(poly.coefficients + i) : -*(poly.coefficients + i), *(poly.exponents + i));
 	}
 
